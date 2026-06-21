@@ -1,0 +1,98 @@
+{
+  "scenes": [
+    {
+      "id": "portrait-01",
+      "title": "Portrait — golden hour",
+      "mode": "simulation",
+      "baseImage": "/img/portrait-01/base.png",
+      "alt": "Portrait subject standing outdoors at golden hour with a receding background and street movement.",
+      "ranges": {
+        "aperture": [1.8, 2.8, 4, 5.6, 8, 11, 16],
+        "shutterSpeed": ["1/1000", "1/500", "1/250", "1/125", "1/60", "1/30", "1/15"],
+        "iso": [100, 200, 400, 800, 1600, 3200]
+      },
+      "defaultSettings": {
+        "aperture": 2.8,
+        "shutterSpeed": "1/250",
+        "iso": 200
+      },
+      "presets": [
+        {
+          "id": "default-exposure",
+          "label": "Default exposure",
+          "description": "Balanced portrait settings with clean detail.",
+          "settings": { "aperture": 2.8, "shutterSpeed": "1/250", "iso": 200 }
+        },
+        {
+          "id": "soft-background",
+          "label": "Soft background",
+          "description": "Wide aperture for stronger subject separation.",
+          "settings": { "aperture": 1.8, "shutterSpeed": "1/500", "iso": 200 }
+        },
+        {
+          "id": "deep-focus",
+          "label": "Deep focus",
+          "description": "Narrow aperture keeps more of the scene sharp.",
+          "settings": { "aperture": 11, "shutterSpeed": "1/60", "iso": 800 }
+        },
+        {
+          "id": "frozen-motion",
+          "label": "Frozen motion",
+          "description": "Fast shutter keeps movement crisp.",
+          "settings": { "aperture": 4, "shutterSpeed": "1/1000", "iso": 800 }
+        },
+        {
+          "id": "motion-blur",
+          "label": "Motion blur",
+          "description": "Slow shutter shows visible movement.",
+          "settings": { "aperture": 5.6, "shutterSpeed": "1/15", "iso": 200 }
+        },
+        {
+          "id": "noisy-high-iso",
+          "label": "Noisy high ISO",
+          "description": "High ISO brightens the frame and adds grain.",
+          "settings": { "aperture": 8, "shutterSpeed": "1/125", "iso": 3200 }
+        }
+      ],
+      "simulation": {
+        "apertureBlurMaxPx": 14,
+        "motionBlurMaxPx": 18,
+        "noiseMaxOpacity": 0.3
+      }
+    }
+  ],
+  "lessons": [
+    {
+      "id": "portraiture",
+      "title": "Portraiture",
+      "sceneId": "portrait-01",
+      "summary": "Learn how aperture changes background blur, how shutter speed handles movement, and how ISO affects exposure and grain.",
+      "steps": [
+        {
+          "id": "wide-aperture",
+          "title": "Separate the subject",
+          "body": "A wide aperture keeps the subject prominent while softening the background. It is a common portrait choice when the environment should support the subject without competing for attention.",
+          "settings": { "aperture": 1.8, "shutterSpeed": "1/500", "iso": 200 }
+        },
+        {
+          "id": "narrow-aperture",
+          "title": "Keep the location readable",
+          "body": "A narrower aperture brings more background detail back into the frame. Use it when the setting tells part of the story.",
+          "settings": { "aperture": 11, "shutterSpeed": "1/60", "iso": 800 }
+        },
+        {
+          "id": "fast-shutter",
+          "title": "Freeze movement",
+          "body": "A fast shutter speed reduces motion blur. It is useful when the subject, camera, or background activity is moving.",
+          "settings": { "aperture": 4, "shutterSpeed": "1/1000", "iso": 800 }
+        },
+        {
+          "id": "high-iso",
+          "title": "Trade cleanliness for brightness",
+          "body": "Higher ISO helps brighten an image when the aperture or shutter speed cannot change, but the image becomes noisier.",
+          "settings": { "aperture": 8, "shutterSpeed": "1/125", "iso": 3200 }
+        }
+      ]
+    }
+  ]
+}

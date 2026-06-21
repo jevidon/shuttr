@@ -1,0 +1,173 @@
+.image-viewer {
+  margin: 0;
+}
+
+.viewer-stage {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  min-height: 320px;
+  border: 1px solid rgba(23, 33, 31, 0.12);
+  border-radius: 0.5rem;
+  background: #121917;
+  box-shadow: var(--shadow);
+}
+
+.image-viewer.compact .viewer-stage {
+  min-height: 290px;
+}
+
+.viewer-base {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.blurred-layer {
+  z-index: 1;
+  filter: var(--viewer-filter) blur(var(--background-blur));
+  transform: scale(1.045);
+  transform-origin: center;
+}
+
+.subject-layer {
+  z-index: 2;
+  filter: var(--viewer-filter);
+  clip-path: ellipse(25% 48% at 36% 56%);
+}
+
+.motion-layer {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  background-image: url("/img/portrait-01/base.png");
+  background-size: cover;
+  background-position: center;
+  clip-path: polygon(54% 36%, 90% 29%, 94% 66%, 56% 70%);
+  filter: var(--viewer-filter) blur(var(--motion-blur));
+  opacity: var(--motion-opacity);
+  transform: translateX(var(--motion-shift));
+  mix-blend-mode: screen;
+}
+
+.noise-layer {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  opacity: var(--noise-opacity);
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 25% 34%, rgba(255, 255, 255, 0.75) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 70% 72%, rgba(0, 0, 0, 0.45) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 48% 18%, rgba(255, 255, 255, 0.55) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 14% 84%, rgba(0, 0, 0, 0.35) 0 1px, transparent 1.7px);
+  background-size: 9px 9px, 11px 11px, 13px 13px, 15px 15px;
+  mix-blend-mode: overlay;
+}
+
+.vignette-layer {
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 36% 55%, transparent 0 27%, rgba(0, 0, 0, var(--vignette-soft)) 67%, rgba(0, 0, 0, var(--vignette-opacity)) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.2), transparent 32%, rgba(0, 0, 0, 0.25));
+}
+
+.baseline-split {
+  position: absolute;
+  z-index: 6;
+  inset: 0 auto 0 0;
+  width: 50%;
+  overflow: hidden;
+  border-right: 2px solid rgba(255, 255, 255, 0.85);
+}
+
+.baseline-split img {
+  width: 200%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  filter: var(--baseline-filter);
+}
+
+.baseline-split span {
+  position: absolute;
+  left: 0.85rem;
+  bottom: 0.85rem;
+  padding: 0.32rem 0.55rem;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 900;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.48);
+}
+
+.settings-overlay {
+  position: absolute;
+  z-index: 8;
+  right: 1rem;
+  bottom: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 0.5rem;
+  color: #fff;
+  background: rgba(12, 17, 16, 0.66);
+  backdrop-filter: blur(12px);
+}
+
+.settings-overlay div {
+  min-width: 5rem;
+  padding: 0.42rem 0.58rem;
+  border-radius: 0.35rem;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.settings-overlay dt {
+  margin-bottom: 0.16rem;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.67rem;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.settings-overlay dd {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 950;
+}
+
+.viewer-caption {
+  margin: 0.55rem 0 0;
+  font-size: 0.88rem;
+}
+
+@media (max-width: 700px) {
+  .viewer-stage {
+    min-height: auto;
+  }
+
+  .settings-overlay {
+    right: 0.5rem;
+    bottom: 0.5rem;
+    left: 0.5rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .settings-overlay div {
+    min-width: 0;
+  }
+
+  .settings-overlay dd {
+    font-size: 0.88rem;
+  }
+}
